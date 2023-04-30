@@ -21,6 +21,8 @@
 }
 
 #btn {
+    position: relative;
+    top: 70px;
     background-color: black;
     font-size: 30px;
     height: 80px;
@@ -28,4 +30,21 @@
 
 #btn:hover {
     background-color: rgb(44, 43, 43);
+}
+
+.spin {
+    margin: 20px 0;
+    margin-bottom: 20px;
+    padding: 30px 50px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+.message {
+    width: 80%;
+    height: 70vh;
+    border: 2px solid rgb(98, 181, 181);
+    overflow-y: auto;
+    border-radius: 3%;
 }

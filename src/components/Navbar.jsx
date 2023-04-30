@@ -1,7 +1,11 @@
 import { Layout, Menu } from "antd";
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../";
+import { useAuthState } from "react-firebase-hooks/auth";
 
-const Navbar = ({ auth, setAuth }) => {
+const Navbar = () => {
+    const { auth } = useContext(Context);
+    const [user] = useAuthState(auth);
     return (
         <Layout.Header>
             <Menu
@@ -10,24 +14,19 @@ const Navbar = ({ auth, setAuth }) => {
                 theme="dark"
                 mode="horizontal"
                 items={
-                    auth
+                    user
                         ? [
                               { label: "Username", key: "name" },
                               {
                                   label: "Log out",
                                   key: "logout",
-                                  onClick: () => {
-                                      setAuth(false);
-                                  },
+                                  onClick: async () => await auth.signOut(),
                               },
                           ]
                         : [
                               {
                                   label: "Log in",
                                   key: "login",
-                                  onClick: () => {
-                                      setAuth(true);
-                                  },
                               },
                           ]
                 }

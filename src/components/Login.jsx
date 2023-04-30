@@ -1,12 +1,21 @@
 import { Button, Card, Row } from "antd";
-import React from "react";
+import React, { useContext } from "react";
+import firebase from "firebase/compat/app";
+import { Context } from "../";
 
 const Login = () => {
+    const { auth } = useContext(Context);
+
+    const login = async () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        await auth.signInWithPopup(provider);
+    };
+
     return (
         <Row justify="center" align="middle" className="content">
             <Card className="card">
-                <Row justify="center" style={{ height: 160 }}>
-                    <Button type="primary" id="btn">
+                <Row justify="center">
+                    <Button type="primary" id="btn" onClick={login}>
                         Log in with GOOGLE
                     </Button>
                 </Row>
